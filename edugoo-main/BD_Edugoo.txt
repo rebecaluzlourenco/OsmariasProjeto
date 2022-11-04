@@ -1,0 +1,73 @@
+use edugoo;
+SET SQL_SAFE_UPDATES = 0;
+drop table if exists usuarios;
+create table usuarios(
+	usuario_id				int				auto_increment		primary key,
+    usuario_nome			varchar(30),
+    usuario_username		varchar(30),
+    usuario_senha			varchar(30),
+    usuario_cpf				varchar(30),
+    usuario_tipo			varchar(20)		default 'Responsavel'
+);
+
+drop table if exists funcionarios;
+create table funcionarios(
+	funcionario_id			int				auto_increment	primary key,
+    funcionario_categoria	varchar(30)		not null,
+    funcionario_periodo		varchar(30)		not null,
+    funcionario_fase		varchar(30)		not null,
+    funcionario_nome		varchar(30)		not null,
+    funcionario_sexo		varchar(15),
+    funcionario_datan		date			not null,
+    funcionario_cpf			varchar(30)		not null,
+    funcionario_email		varchar(40),
+    funcionario_telefone	varchar(30),
+    funcionario_endereco	varchar(40),
+    funcionario_compl		varchar(30),
+    funcionario_no			varchar(10),
+    funcionario_bairro		varchar(30),
+    funcionario_cidade		varchar(30),
+    funcionario_cep			varchar(20),
+    funcionario_estado		varchar(10)
+);
+
+drop table if exists alunos;
+create table alunos(
+	aluno_id						int				auto_increment	primary key,
+	aluno_categoria					varchar(30)		default 'Aluno',
+    aluno_periodo					varchar(30)		not null,
+    aluno_fase						varchar(30)		not null,
+    aluno_nome						varchar(30)		not null,
+    aluno_sexo						varchar(15),
+    aluno_datan						date			not null,
+    aluno_cpf						varchar(30)		not null,
+    aluno_email						varchar(40),
+    aluno_telefone					varchar(30),
+    aluno_endereco					varchar(30),
+    aluno_compl						varchar(30),
+    aluno_no						varchar(10),
+    aluno_bairro					varchar(30),
+    aluno_cidade					varchar(30),
+    aluno_cep						varchar(20),
+    aluno_estado					varchar(10)
+);
+
+drop table if exists agenda;
+create table agenda (
+	agenda_id				int			auto_increment	primary key,
+	agenda_nome_aluno		varchar(30) not null,
+    agenda_cpf_aluno		varchar(30) not null,
+    agenda_comportamento 	varchar(30) not null,
+    agenda_alimentacao		varchar(30) not null,
+    agenda_evacuacao		varchar(30) not null,
+    agenda_soneca			varchar(30) not null,
+    agenda_recados			varchar(30),
+    agenda_data				date		not null default(current_date()),
+    agenda_alunos_id 		int not null references alunos(alunos_id)
+);
+
+insert into usuarios values (null, 'Ana','admin1', 'admin123','123.456.789-11', 'Administrador');
+insert into usuarios values (null, 'Luan','prof1', 'prof123','987.654.321-55', 'Professor');
+insert into usuarios values (null, 'PaiTeste','pai1', 'pai123','524.534.798-90', 'Responsavel');
+
+insert into alunos (aluno_periodo, aluno_fase, aluno_nome, aluno_datan, aluno_cpf) values ("manha", "3", "Luan Lima", "2003-06-28", "524.534.798-90");
