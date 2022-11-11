@@ -54,7 +54,7 @@ public class Tela3CadastroUsuario extends javax.swing.JFrame {
         });
         getContentPane().add(btnSalvar_Cliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 420, 120, 30));
 
-        btnVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/LOGUINHO.png"))); // NOI18N
+        btnVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/voltar.png"))); // NOI18N
         btnVoltar.setBorder(null);
         btnVoltar.setBorderPainted(false);
         btnVoltar.addActionListener(new java.awt.event.ActionListener() {
