@@ -19,14 +19,13 @@ public class Tela4CadastroPerfil extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        txtInt1 = new javax.swing.JTextField();
-        txtInt2 = new javax.swing.JTextField();
-        btnMenu = new javax.swing.JButton();
         btnSalvarPerfil = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
+        jComboBox2 = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtSobreMim = new javax.swing.JTextArea();
         jComboBox1 = new javax.swing.JComboBox<>();
+        jComboBox3 = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -53,16 +52,6 @@ public class Tela4CadastroPerfil extends javax.swing.JFrame {
 
         jLabel4.setText("Interesses");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, -1, -1));
-        getContentPane().add(txtInt1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 350, 140, -1));
-        getContentPane().add(txtInt2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 350, 140, -1));
-
-        btnMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/LOGUINHO.png"))); // NOI18N
-        btnMenu.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMenuActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 20, 50, 40));
 
         btnSalvarPerfil.setBackground(new java.awt.Color(161, 66, 105));
         btnSalvarPerfil.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
@@ -78,6 +67,9 @@ public class Tela4CadastroPerfil extends javax.swing.JFrame {
         jLabel5.setText("Status no Mercado");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 390, -1, -1));
 
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione", "Administração", "Arquitetura", "Biomedicina", "Design", "Design de Interiores", "Design de Produto", "Dentista", "Direito", "Economia", "Enfermagem", "Engenharia Civil", "Engenharia Elétrica", "Engenharia Mecânica", "Engenharia de Minas", "Engenharia de Produção", "Estética", "Farmácia", "Fisioterapia", "Fonoaudiologia", "Gastronomia", "Logística", "Medicina", "Nutrição", "Odontologia", "Paisagismo", "Pedagogia", "Psicologia", "Radiologia", "Recursos Humanos", "Rede de Computadores", "Relações Internacionais", "Serviços Gerais", "Sistemas da Informação", "Sistemas para Internet", "Tecnologia da Informação", "Terapias Integrativas e Complementares" }));
+        getContentPane().add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 350, 140, -1));
+
         txtSobreMim.setColumns(20);
         txtSobreMim.setRows(5);
         jScrollPane1.setViewportView(txtSobreMim);
@@ -86,6 +78,9 @@ public class Tela4CadastroPerfil extends javax.swing.JFrame {
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A disposição", "Trabalhando", "Estagiando", "Se profissionalizando", "Desempregada", "Buscando conhecimento" }));
         getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 410, 300, -1));
+
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione", "Administração", "Arquitetura", "Biomedicina", "Design", "Design de Interiores", "Design de Produto", "Dentista", "Direito", "Economia", "Enfermagem", "Engenharia Civil", "Engenharia Elétrica", "Engenharia Mecânica", "Engenharia de Minas", "Engenharia de Produção", "Estética", "Farmácia", "Fisioterapia", "Fonoaudiologia", "Gastronomia", "Logística", "Medicina", "Nutrição", "Odontologia", "Paisagismo", "Pedagogia", "Psicologia", "Radiologia", "Recursos Humanos", "Rede de Computadores", "Relações Internacionais", "Serviços Gerais", "Sistemas da Informação", "Sistemas para Internet", "Tecnologia da Informação", "Terapias Integrativas e Complementares" }));
+        getContentPane().add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 350, 140, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/TELACADASTROPERFIL.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 480));
@@ -97,13 +92,6 @@ public class Tela4CadastroPerfil extends javax.swing.JFrame {
     private void btnFotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFotoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnFotoActionPerformed
-
-    private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
-        Tela4Menu_1 tela = new Tela4Menu_1();
-        tela.setVisible(true);
-        dispose();
-    
-    }//GEN-LAST:event_btnMenuActionPerformed
 
     private void btnSalvarPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarPerfilActionPerformed
       CadastraPerfil(novoPerfil);
@@ -150,10 +138,11 @@ public class Tela4CadastroPerfil extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnFoto;
-    private javax.swing.JButton btnMenu;
     private javax.swing.JButton btnSalvarPerfil;
     private com.toedter.calendar.JDateChooser dataNasc;
     private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JComboBox<String> jComboBox3;
     private com.toedter.calendar.JDayChooser jDayChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -162,8 +151,6 @@ public class Tela4CadastroPerfil extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField nomePerfil;
-    private javax.swing.JTextField txtInt1;
-    private javax.swing.JTextField txtInt2;
     private javax.swing.JTextArea txtSobreMim;
     // End of variables declaration//GEN-END:variables
 }
