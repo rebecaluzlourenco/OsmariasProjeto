@@ -11,14 +11,12 @@ public class Tela2Login extends javax.swing.JFrame {
     
     MySQL conectar = new MySQL();
     ObjUsuario objUsuario = new ObjUsuario();
-    
-    String CpfAtivo = "";
 
     private Connection conn;
  
     public Tela2Login() {
         initComponents();
-        jLabel1.setFocusable(true);
+        fundo.setFocusable(true);
     }
 
     @SuppressWarnings("unchecked")
@@ -26,10 +24,10 @@ public class Tela2Login extends javax.swing.JFrame {
     private void initComponents() {
 
         campoUsuario = new javax.swing.JTextField();
-        btnNovo = new javax.swing.JButton();
-        btnLogin = new javax.swing.JButton();
+        btnCadastrar = new javax.swing.JButton();
+        btnEntrar = new javax.swing.JButton();
         campoSenha = new javax.swing.JPasswordField();
-        jLabel1 = new javax.swing.JLabel();
+        fundo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(204, 204, 204));
@@ -39,78 +37,95 @@ public class Tela2Login extends javax.swing.JFrame {
         campoUsuario.setFont(new java.awt.Font("Segoe UI", 2, 15)); // NOI18N
         campoUsuario.setForeground(new java.awt.Color(204, 204, 204));
         campoUsuario.setText("Usuário");
+        campoUsuario.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                campoUsuarioFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                campoUsuarioFocusLost(evt);
+            }
+        });
         getContentPane().add(campoUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 270, 200, -1));
 
-        btnNovo.setBackground(new java.awt.Color(22, 53, 88));
-        btnNovo.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
-        btnNovo.setForeground(new java.awt.Color(255, 255, 255));
-        btnNovo.setText("Cadastrar");
-        btnNovo.addActionListener(new java.awt.event.ActionListener() {
+        btnCadastrar.setBackground(new java.awt.Color(22, 53, 88));
+        btnCadastrar.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
+        btnCadastrar.setForeground(new java.awt.Color(255, 255, 255));
+        btnCadastrar.setText("Cadastrar");
+        btnCadastrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNovoActionPerformed(evt);
+                btnCadastrarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnNovo, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 430, 120, -1));
+        getContentPane().add(btnCadastrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 430, 120, -1));
 
-        btnLogin.setBackground(new java.awt.Color(161, 211, 199));
-        btnLogin.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
-        btnLogin.setForeground(new java.awt.Color(22, 53, 88));
-        btnLogin.setText("ENTRAR");
-        btnLogin.addActionListener(new java.awt.event.ActionListener() {
+        btnEntrar.setBackground(new java.awt.Color(161, 211, 199));
+        btnEntrar.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
+        btnEntrar.setForeground(new java.awt.Color(22, 53, 88));
+        btnEntrar.setText("ENTRAR");
+        btnEntrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLoginActionPerformed(evt);
+                btnEntrarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 350, 120, -1));
+        getContentPane().add(btnEntrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 350, 120, -1));
 
         campoSenha.setForeground(new java.awt.Color(204, 204, 204));
-        campoSenha.setText("jPasswordField1");
+        campoSenha.setText("***************");
+        campoSenha.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                campoSenhaFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                campoSenhaFocusLost(evt);
+            }
+        });
         getContentPane().add(campoSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 310, 200, -1));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/TELALOGIN2.png"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 320, -1));
+        fundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/TELALOGIN2.png"))); // NOI18N
+        getContentPane().add(fundo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 320, -1));
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
        
-    private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
+    private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
         Tela3CadastroUsuario tela = new Tela3CadastroUsuario();
         tela.setVisible(true);
         dispose();
-    }//GEN-LAST:event_btnNovoActionPerformed
+    }//GEN-LAST:event_btnCadastrarActionPerformed
 
-    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
+    private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
        Logar(BuscarUsuario(objUsuario));
-    }//GEN-LAST:event_btnLoginActionPerformed
+    }//GEN-LAST:event_btnEntrarActionPerformed
 
-    private void campoUsuarioFocusLost(java.awt.event.FocusEvent evt) {                                       
+    private void campoUsuarioFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoUsuarioFocusLost
         if (campoUsuario.getText().equals("")) {
             campoUsuario.setText("Usuário");
             campoUsuario.setForeground(new Color(204, 204, 204));
         }
-    }                                      
+    }//GEN-LAST:event_campoUsuarioFocusLost
 
-    private void campoUsuarioFocusGained(java.awt.event.FocusEvent evt) {                                         
+    private void campoSenhaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoSenhaFocusGained
+        if (campoSenha.getText().equals("***************")) {
+            campoSenha.setText("");
+            campoSenha.setForeground(new Color(0, 0, 0));
+        }
+    }//GEN-LAST:event_campoSenhaFocusGained
+
+    private void campoUsuarioFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoUsuarioFocusGained
         if (campoUsuario.getText().equals("Usuário")) {
             campoUsuario.setText("");
             campoUsuario.setForeground(new Color(0, 0, 0));
         }
-    }                                        
+    }//GEN-LAST:event_campoUsuarioFocusGained
 
-    private void campoSenhaFocusLost(java.awt.event.FocusEvent evt) {                                     
+    private void campoSenhaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoSenhaFocusLost
         if (campoSenha.getText().equals("")) {
-            campoSenha.setText("**********");
+            campoSenha.setText("***************");
             campoSenha.setForeground(new Color(204, 204, 204));
         }
-    }                                    
+    }//GEN-LAST:event_campoSenhaFocusLost
 
-    private void campoSenhaFocusGained(java.awt.event.FocusEvent evt) {                                       
-        if (campoSenha.getText().equals("**********")) {
-            campoSenha.setText("");
-            campoSenha.setForeground(new Color(0, 0, 0));
-        }
-    }
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -148,11 +163,11 @@ public class Tela2Login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnLogin;
-    private javax.swing.JButton btnNovo;
+    private javax.swing.JButton btnCadastrar;
+    private javax.swing.JButton btnEntrar;
     private javax.swing.JPasswordField campoSenha;
     private javax.swing.JTextField campoUsuario;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel fundo;
     // End of variables declaration//GEN-END:variables
 
     private ObjUsuario BuscarUsuario(ObjUsuario objUsuario) {
@@ -168,9 +183,8 @@ public class Tela2Login extends javax.swing.JFrame {
                     + "usuario_id,"
                     + "usuario_nome,"
                     + "usuario_username,"
-                    + "usuario_senha,"
-                    + "usuario_cpf,"
-                    + "usuario_tipo"
+                    + "usuario_email,"
+                    + "usuario_senha"
                     + " FROM"
                     + " usuarios"
                     + " WHERE"
@@ -183,14 +197,12 @@ public class Tela2Login extends javax.swing.JFrame {
                 objUsuario.setUsuarioId(Integer.parseInt(this.conectar.getResultSet().getString(1)));
                 objUsuario.setUsuarioNome(this.conectar.getResultSet().getString(2));
                 objUsuario.setUsuarioUserName(this.conectar.getResultSet().getString(3));
-                objUsuario.setUsuarioSenha(this.conectar.getResultSet().getString(4));
-                objUsuario.setUsuarioCpf(this.conectar.getResultSet().getString(5));
-                objUsuario.setUsuarioTipo(this.conectar.getResultSet().getString(6));
+                objUsuario.setUsuarioEmail(this.conectar.getResultSet().getString(4));
+                objUsuario.setUsuarioSenha(this.conectar.getResultSet().getString(5));
 
             }
             
             if (objUsuario.getUsuarioUserName().equals("")) {
-//                JOptionPane.showMessageDialog(null, "Usuario ou Senha Incorretos!");
                 objUsuario = null;
             }
 
@@ -207,24 +219,12 @@ public class Tela2Login extends javax.swing.JFrame {
     
     private void Logar(ObjUsuario objUsuario){
         
-        String tipo;
-        
         if (objUsuario == null) {
-            JOptionPane.showMessageDialog(null, "Usuario ou Senha Incorretos!");    
+            JOptionPane.showMessageDialog(null, "Usuario ou Senha Incorretos!");
         } else {
-            tipo = objUsuario.getUsuarioTipo();
-            
-            switch(tipo){
-                case "Usuário":
-                    Tela5Feed telafeed = new Tela5Feed();
-                    telafeed.setVisible(true);
-                    System.out.println("Seja bem vindo!");
-                    dispose();
-                    break;
-                default:
-                    JOptionPane.showMessageDialog(null, "Algo deu errado: Switch, tela Login, Função Logar(ObjUsuario)");
-                    break;
-            }
+            Tela4CadastroPerfil telaCadPerfil = new Tela4CadastroPerfil();
+            telaCadPerfil.setVisible(true);
+            dispose();
         }
     }
 }
