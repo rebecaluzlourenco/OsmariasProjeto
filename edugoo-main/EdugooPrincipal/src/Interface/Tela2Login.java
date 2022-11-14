@@ -1,12 +1,25 @@
-
 package Interface;
 
+import java.awt.Color;
+import javax.swing.JOptionPane;
+import Conexoes.MySQL;
+import Objetos.ObjUsuario;
+import java.awt.Font;
+import java.sql.Connection;
+
 public class Tela2Login extends javax.swing.JFrame {
+    
+    MySQL conectar = new MySQL();
+    ObjUsuario objUsuario = new ObjUsuario();
+    
+    String CpfAtivo = "";
+
+    private Connection conn;
  
     public Tela2Login() {
         initComponents();
+        jLabel1.setFocusable(true);
     }
-
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -60,7 +73,7 @@ public class Tela2Login extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
+       
     private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
         Tela3CadastroUsuario tela = new Tela3CadastroUsuario();
         tela.setVisible(true);
@@ -71,9 +84,34 @@ public class Tela2Login extends javax.swing.JFrame {
        Logar(BuscarUsuario(objUsuario));
     }//GEN-LAST:event_btnLoginActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    private void campoUsuarioFocusLost(java.awt.event.FocusEvent evt) {                                       
+        if (campoUsuario.getText().equals("")) {
+            campoUsuario.setText("Usuário");
+            campoUsuario.setForeground(new Color(204, 204, 204));
+        }
+    }                                      
+
+    private void campoUsuarioFocusGained(java.awt.event.FocusEvent evt) {                                         
+        if (campoUsuario.getText().equals("Usuário")) {
+            campoUsuario.setText("");
+            campoUsuario.setForeground(new Color(0, 0, 0));
+        }
+    }                                        
+
+    private void campoSenhaFocusLost(java.awt.event.FocusEvent evt) {                                     
+        if (campoSenha.getText().equals("")) {
+            campoSenha.setText("**********");
+            campoSenha.setForeground(new Color(204, 204, 204));
+        }
+    }                                    
+
+    private void campoSenhaFocusGained(java.awt.event.FocusEvent evt) {                                       
+        if (campoSenha.getText().equals("**********")) {
+            campoSenha.setText("");
+            campoSenha.setForeground(new Color(0, 0, 0));
+        }
+    }
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -116,4 +154,77 @@ public class Tela2Login extends javax.swing.JFrame {
     private javax.swing.JTextField campoUsuario;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
+
+    private ObjUsuario BuscarUsuario(ObjUsuario objUsuario) {
+
+        this.conectar.conectaBanco();
+        
+        String username = campoUsuario.getText();
+        String senha = campoSenha.getText();
+
+        try {
+            this.conectar.executarSQL(
+                    "SELECT "
+                    + "usuario_id,"
+                    + "usuario_nome,"
+                    + "usuario_username,"
+                    + "usuario_senha,"
+                    + "usuario_cpf,"
+                    + "usuario_tipo"
+                    + " FROM"
+                    + " usuarios"
+                    + " WHERE"
+                    + " usuario_username = '" + username + "' and usuario_senha = '" +senha+ "'"
+                    + ";"
+            );
+
+            while (this.conectar.getResultSet().next()) {
+
+                objUsuario.setUsuarioId(Integer.parseInt(this.conectar.getResultSet().getString(1)));
+                objUsuario.setUsuarioNome(this.conectar.getResultSet().getString(2));
+                objUsuario.setUsuarioUserName(this.conectar.getResultSet().getString(3));
+                objUsuario.setUsuarioSenha(this.conectar.getResultSet().getString(4));
+                objUsuario.setUsuarioCpf(this.conectar.getResultSet().getString(5));
+                objUsuario.setUsuarioTipo(this.conectar.getResultSet().getString(6));
+
+            }
+            
+            if (objUsuario.getUsuarioUserName().equals("")) {
+//                JOptionPane.showMessageDialog(null, "Usuario ou Senha Incorretos!");
+                objUsuario = null;
+            }
+
+        } catch (Exception e) {
+            System.out.println("Erro ao consultar usuario " + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Erro ao buscar Usuario");
+            
+            objUsuario = null;
+        } finally {
+            this.conectar.fechaBanco();
+        }
+        return objUsuario;
+    }
+    
+    private void Logar(ObjUsuario objUsuario){
+        
+        String tipo;
+        
+        if (objUsuario == null) {
+            JOptionPane.showMessageDialog(null, "Usuario ou Senha Incorretos!");    
+        } else {
+            tipo = objUsuario.getUsuarioTipo();
+            
+            switch(tipo){
+                case "Usuário":
+                    Tela5Feed telafeed = new Tela5Feed();
+                    telafeed.setVisible(true);
+                    System.out.println("Seja bem vindo!");
+                    dispose();
+                    break;
+                default:
+                    JOptionPane.showMessageDialog(null, "Algo deu errado: Switch, tela Login, Função Logar(ObjUsuario)");
+                    break;
+            }
+        }
+    }
 }
