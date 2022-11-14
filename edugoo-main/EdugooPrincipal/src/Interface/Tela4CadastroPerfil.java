@@ -3,7 +3,7 @@ package Interface;
 
 public class Tela4CadastroPerfil extends javax.swing.JFrame {
 
-      public Tela4CadastroPerfil() {
+    public Tela4CadastroPerfil() {
         initComponents();
     }
 
@@ -90,11 +90,11 @@ public class Tela4CadastroPerfil extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnFotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFotoActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_btnFotoActionPerformed
 
     private void btnSalvarPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarPerfilActionPerformed
-      CadastraPerfil(novoPerfil);
+      
     }//GEN-LAST:event_btnSalvarPerfilActionPerformed
     
     public static void main(String args[]) {

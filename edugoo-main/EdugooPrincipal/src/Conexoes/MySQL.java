@@ -13,9 +13,9 @@ public class MySQL {
     private ResultSet resultSet;
     
     private String servidor = "localhost:3306";
-    private String nomeDoBanco = "edugoo";
-    private String usuario = "edugoo";
-    private String senha = "edugoo123@";
+    private String nomeDoBanco = "osmarias";
+    private String usuario = "userfacu";
+    private String senha = "userfacu";
     
     //Construtor    
     public MySQL(){
@@ -113,6 +113,7 @@ public class MySQL {
             this.resultSet = this.statement.executeQuery(sql);
 
         } catch (SQLException sqlex) {
+            System.out.println("deu erro executarSQL");
             sqlex.printStackTrace();
         }
     }    

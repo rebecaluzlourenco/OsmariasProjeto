@@ -5,9 +5,8 @@ public class ObjUsuario {
     private int usuarioId = 0;
     private String usuarioNome = "";
     private String usuarioUserName = "";
+    private String usuarioEmail = "";
     private String usuarioSenha = "";
-    private String usuarioCpf = "";
-    private String usuarioTipo = "";
 
     //GET AND SETTER
     public int getUsuarioId() {
@@ -34,6 +33,14 @@ public class ObjUsuario {
         this.usuarioUserName = usuarioUserName;
     }
 
+    public String getUsuarioEmail() {
+        return usuarioEmail;
+    }
+
+    public void setUsuarioEmail(String usuarioEmail) {
+        this.usuarioEmail = usuarioEmail;
+    }
+
     public String getUsuarioSenha() {
         return usuarioSenha;
     }
@@ -41,21 +48,4 @@ public class ObjUsuario {
     public void setUsuarioSenha(String usuarioSenha) {
         this.usuarioSenha = usuarioSenha;
     }
-    
-    public String getUsuarioCpf() {
-        return usuarioCpf;
-    }
-
-    public void setUsuarioCpf(String cpf) {
-        this.usuarioCpf = cpf;
-    }
-
-    public String getUsuarioTipo() {
-        return usuarioTipo;
-    }
-
-    public void setUsuarioTipo(String usuarioTipo) {
-        this.usuarioTipo = usuarioTipo;
-    }
-
 }
