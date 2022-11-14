@@ -58,11 +58,6 @@ public class Tela3CadastroUsuario extends javax.swing.JFrame {
         txtNome.setBackground(new java.awt.Color(22, 53, 88));
         txtNome.setForeground(new java.awt.Color(255, 255, 255));
         txtNome.setBorder(null);
-        txtNome.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNomeActionPerformed(evt);
-            }
-        });
         getContentPane().add(txtNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 120, 210, 40));
 
         txtUsuario.setBackground(new java.awt.Color(22, 53, 88));
@@ -81,11 +76,6 @@ public class Tela3CadastroUsuario extends javax.swing.JFrame {
 
         checkTermos.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         checkTermos.setText("Concordo com o Termos de Uso.");
-        checkTermos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                checkTermosActionPerformed(evt);
-            }
-        });
         getContentPane().add(checkTermos, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 380, -1, -1));
 
         jLabel6.setText("Nome");
@@ -117,14 +107,6 @@ public class Tela3CadastroUsuario extends javax.swing.JFrame {
         tela.setVisible(true);
         dispose();       
     }//GEN-LAST:event_btnVoltarActionPerformed
-
-    private void txtNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNomeActionPerformed
-
-    private void checkTermosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkTermosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_checkTermosActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -175,45 +157,82 @@ public class Tela3CadastroUsuario extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void CadastraUsuario(ObjUsuario novoUsuario) {
-
+        
+        String nomeExist = "", emailExist = "";
+        
         if (txtNome.getText().equals("") || txtUsuario.getText().equals("")
                 || txtSenha.getText().equals("") || txtEmail.getText().equals("")) {
 
             JOptionPane.showMessageDialog(null, "Todos os Campos sao Obrigatorios!!");
+        } else if (!txtEmail.getText().contains("@hotmail.com") && !txtEmail.getText().contains("@gmail.com")){
+            JOptionPane.showMessageDialog(null, "Email Invalido!!");
+        } else if (!checkTermos.isSelected()){
+            JOptionPane.showMessageDialog(null, "Necessario Aceitar Termos!");
         } else {
             this.conectar.conectaBanco();
 
             novoUsuario.setUsuarioNome(txtNome.getText());
             novoUsuario.setUsuarioUserName(txtUsuario.getText());
+            novoUsuario.setUsuarioEmail(txtEmail.getText());
             novoUsuario.setUsuarioSenha(txtSenha.getText());
-            novoUsuario.setUsuarioCpf(txtEmail.getText());
-
+            
             try {
+                this.conectar.executarSQL(
+                    "SELECT "
+                    + "usuario_username,"
+                    + "usuario_email"
+                    + " FROM"
+                    + " usuarios"
+                    + " WHERE"
+                    + " usuario_username = '" + txtUsuario.getText() + "' or usuario_email = '" +txtEmail.getText()+ "'"
+                    + ";"
+                );
 
-                this.conectar.insertSQL("INSERT INTO usuarios ("
+                while (this.conectar.getResultSet().next()) {
+                    nomeExist = this.conectar.getResultSet().getString(1);
+                    emailExist = this.conectar.getResultSet().getString(2);
+                }
+            
+                if (nomeExist.equals(novoUsuario.getUsuarioUserName())) {
+                    JOptionPane.showMessageDialog(null, "Nome de Usuario em Uso!");
+                } else if (emailExist.equals(novoUsuario.getUsuarioEmail())){
+                    JOptionPane.showMessageDialog(null, "Email em Uso!");
+                } else {
+                    try {
+
+                    this.conectar.insertSQL("INSERT INTO usuarios ("
                         + "usuario_nome,"
                         + "usuario_username,"
-                        + "usuario_senha,"
-                        + "usuario_cpf"
+                        + "usuario_email,"
+                        + "usuario_senha"
                         + ") VALUES ("
                         + "'" + novoUsuario.getUsuarioNome() + "',"
                         + "'" + novoUsuario.getUsuarioUserName() + "',"
-                        + "'" + novoUsuario.getUsuarioSenha() + "',"
-                        + "'" + novoUsuario.getUsuarioCpf() + "'"
+                        + "'" + novoUsuario.getUsuarioEmail() + "',"
+                        + "'" + novoUsuario.getUsuarioSenha() + "'"
                         + ");");
 
+                    } catch (Exception e) {
+
+                        System.out.println("Erro ao cadastrar usuário " + e.getMessage());
+                        JOptionPane.showMessageDialog(null, "Erro ao cadastrar usuário");
+
+                    } finally {
+                        this.conectar.fechaBanco();
+                        JOptionPane.showMessageDialog(null, "Cadastro Realizado!");
+                        Tela4CadastroPerfil telaCadPerfil = new Tela4CadastroPerfil();
+                        telaCadPerfil.setVisible(true);
+                        dispose();
+                    }
+                }
+
             } catch (Exception e) {
-
-                System.out.println("Erro ao cadastrar usuário " + e.getMessage());
-                JOptionPane.showMessageDialog(null, "Erro ao cadastrar usuário");
-
+                System.out.println("Erro ao Buscar usuario " + e.getMessage());
+                JOptionPane.showMessageDialog(null, "Erro ao buscar Usuario");
             } finally {
                 this.conectar.fechaBanco();
-                JOptionPane.showMessageDialog(null, "Obrigado por realizar seu cadastro!");
-                Tela2Login tela = new Tela2Login();
-                tela.setVisible(true);
-                dispose();
             }
         }
+        
     }
 }
