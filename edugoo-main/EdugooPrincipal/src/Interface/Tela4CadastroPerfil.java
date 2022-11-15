@@ -1,13 +1,16 @@
-
 package Interface;
+
+import Objetos.ObjUsuario;
 
 public class Tela4CadastroPerfil extends javax.swing.JFrame {
 
+    ObjUsuario usuario = new ObjUsuario();
+    
     public Tela4CadastroPerfil() {
         initComponents();
     }
-
-   
+    
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -94,7 +97,7 @@ public class Tela4CadastroPerfil extends javax.swing.JFrame {
     }//GEN-LAST:event_btnFotoActionPerformed
 
     private void btnSalvarPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarPerfilActionPerformed
-      
+        
     }//GEN-LAST:event_btnSalvarPerfilActionPerformed
     
     public static void main(String args[]) {
@@ -153,4 +156,9 @@ public class Tela4CadastroPerfil extends javax.swing.JFrame {
     private javax.swing.JTextField nomePerfil;
     private javax.swing.JTextArea txtSobreMim;
     // End of variables declaration//GEN-END:variables
+
+
+    public void recebeUsuarioOn(ObjUsuario usuAtual){
+        this.usuario = usuAtual;
+    }
 }
