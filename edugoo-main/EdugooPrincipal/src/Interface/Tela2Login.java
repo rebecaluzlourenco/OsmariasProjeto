@@ -95,7 +95,11 @@ public class Tela2Login extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
-       Logar(BuscarUsuario(objUsuario));
+       if(campoUsuario.getText().equals("Usuário") || campoSenha.getText().equals("***************")){
+           JOptionPane.showMessageDialog(null, "Todos os Campos sao necessarios!!");
+       } else {
+           Logar(objUsuario.BuscarUsuario(campoUsuario.getText(), campoSenha.getText()));
+       }
     }//GEN-LAST:event_btnEntrarActionPerformed
 
     private void campoUsuarioFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoUsuarioFocusLost
@@ -170,12 +174,10 @@ public class Tela2Login extends javax.swing.JFrame {
     private javax.swing.JLabel fundo;
     // End of variables declaration//GEN-END:variables
 
-    private ObjUsuario BuscarUsuario(ObjUsuario objUsuario) {
+    /*private ObjUsuario BuscarUsuario(String username, String senha) {
 
+        ObjUsuario buscaUser = new ObjUsuario();
         this.conectar.conectaBanco();
-        
-        String username = campoUsuario.getText();
-        String senha = campoSenha.getText();
 
         try {
             this.conectar.executarSQL(
@@ -184,7 +186,8 @@ public class Tela2Login extends javax.swing.JFrame {
                     + "usuario_nome,"
                     + "usuario_username,"
                     + "usuario_email,"
-                    + "usuario_senha"
+                    + "usuario_senha,"
+                    + "usuario_perfilexist"
                     + " FROM"
                     + " usuarios"
                     + " WHERE"
@@ -194,37 +197,46 @@ public class Tela2Login extends javax.swing.JFrame {
 
             while (this.conectar.getResultSet().next()) {
 
-                objUsuario.setUsuarioId(Integer.parseInt(this.conectar.getResultSet().getString(1)));
-                objUsuario.setUsuarioNome(this.conectar.getResultSet().getString(2));
-                objUsuario.setUsuarioUserName(this.conectar.getResultSet().getString(3));
-                objUsuario.setUsuarioEmail(this.conectar.getResultSet().getString(4));
-                objUsuario.setUsuarioSenha(this.conectar.getResultSet().getString(5));
-
+                buscaUser.setUsuarioId(Integer.parseInt(this.conectar.getResultSet().getString(1)));
+                buscaUser.setUsuarioNome(this.conectar.getResultSet().getString(2));
+                buscaUser.setUsuarioUserName(this.conectar.getResultSet().getString(3));
+                buscaUser.setUsuarioEmail(this.conectar.getResultSet().getString(4));
+                buscaUser.setUsuarioSenha(this.conectar.getResultSet().getString(5));
+                buscaUser.setUsuarioPerfilExist(Integer.parseInt(this.conectar.getResultSet().getString(6)));
+                
             }
             
-            if (objUsuario.getUsuarioUserName().equals("")) {
-                objUsuario = null;
+            if (buscaUser.getUsuarioUserName().equals("")) {
+                buscaUser = null;
             }
 
         } catch (Exception e) {
             System.out.println("Erro ao consultar usuario " + e.getMessage());
             JOptionPane.showMessageDialog(null, "Erro ao buscar Usuario");
             
-            objUsuario = null;
+            buscaUser = null;
         } finally {
             this.conectar.fechaBanco();
         }
-        return objUsuario;
-    }
+        return buscaUser;
+    }*/
     
     private void Logar(ObjUsuario objUsuario){
         
         if (objUsuario == null) {
             JOptionPane.showMessageDialog(null, "Usuario ou Senha Incorretos!");
         } else {
-            Tela4CadastroPerfil telaCadPerfil = new Tela4CadastroPerfil();
-            telaCadPerfil.setVisible(true);
-            dispose();
+            if(objUsuario.getUsuarioPerfilExist() == 0){
+                Tela4CadastroPerfil telaCadPerfil = new Tela4CadastroPerfil();
+                telaCadPerfil.setVisible(true);
+                telaCadPerfil.recebeUsuarioOn(objUsuario);
+                dispose();
+            } else {
+                Tela5Feed telaFeed = new Tela5Feed();
+                telaFeed.setVisible(true);
+                telaFeed.recebeUsuarioOn(objUsuario);
+                dispose();
+            }
         }
     }
 }

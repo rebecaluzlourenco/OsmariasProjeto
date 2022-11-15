@@ -204,12 +204,14 @@ public class Tela3CadastroUsuario extends javax.swing.JFrame {
                         + "usuario_nome,"
                         + "usuario_username,"
                         + "usuario_email,"
-                        + "usuario_senha"
+                        + "usuario_senha,"
+                        + "usuario_perfilexist"
                         + ") VALUES ("
                         + "'" + novoUsuario.getUsuarioNome() + "',"
                         + "'" + novoUsuario.getUsuarioUserName() + "',"
                         + "'" + novoUsuario.getUsuarioEmail() + "',"
-                        + "'" + novoUsuario.getUsuarioSenha() + "'"
+                        + "'" + novoUsuario.getUsuarioSenha() + "',"
+                        + "'" + novoUsuario.getUsuarioPerfilExist() + "'"
                         + ");");
 
                     } catch (Exception e) {
@@ -222,6 +224,7 @@ public class Tela3CadastroUsuario extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(null, "Cadastro Realizado!");
                         Tela4CadastroPerfil telaCadPerfil = new Tela4CadastroPerfil();
                         telaCadPerfil.setVisible(true);
+                        telaCadPerfil.recebeUsuarioOn(novoUsuario.BuscarUsuario(novoUsuario.getUsuarioUserName(), novoUsuario.getUsuarioSenha()));
                         dispose();
                     }
                 }
