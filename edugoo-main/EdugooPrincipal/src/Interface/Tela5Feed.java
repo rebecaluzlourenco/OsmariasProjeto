@@ -20,6 +20,7 @@ public class Tela5Feed extends javax.swing.JFrame {
 
         jFrame1 = new javax.swing.JFrame();
         btnMeuPerfil = new javax.swing.JButton();
+        btnBuscarVagas = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
@@ -43,7 +44,15 @@ public class Tela5Feed extends javax.swing.JFrame {
                 btnMeuPerfilActionPerformed(evt);
             }
         });
-        getContentPane().add(btnMeuPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 120, -1, -1));
+        getContentPane().add(btnMeuPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, -1, -1));
+
+        btnBuscarVagas.setText("Buscar Vagas");
+        btnBuscarVagas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarVagasActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnBuscarVagas, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 100, -1, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/TELAPRINCIPAL.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 320, 480));
@@ -56,8 +65,13 @@ public class Tela5Feed extends javax.swing.JFrame {
         Tela4CadastroPerfil telaMeuPerfil = new Tela4CadastroPerfil();
         telaMeuPerfil.recebeUsuarioOn(usuario);
         telaMeuPerfil.setVisible(true);
-        dispose();
     }//GEN-LAST:event_btnMeuPerfilActionPerformed
+
+    private void btnBuscarVagasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarVagasActionPerformed
+        Tela6Vagas telaVagas = new Tela6Vagas();
+        telaVagas.setVisible(true);
+        telaVagas.recebeUsuarioOn(usuario);
+    }//GEN-LAST:event_btnBuscarVagasActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -95,6 +109,7 @@ public class Tela5Feed extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBuscarVagas;
     private javax.swing.JButton btnMeuPerfil;
     private javax.swing.JFrame jFrame1;
     private javax.swing.JLabel jLabel1;

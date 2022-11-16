@@ -29,9 +29,9 @@ public class Tela4CadastroPerfil extends javax.swing.JFrame {
         btnFoto = new javax.swing.JButton();
         campoNomePerfil = new javax.swing.JTextField();
         dataNasc = new com.toedter.calendar.JDateChooser();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        txtDataNasc = new javax.swing.JLabel();
+        txtSobreMim = new javax.swing.JLabel();
+        txtInteresses = new javax.swing.JLabel();
         btnSalvarPerfil = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         cbInteresse1 = new javax.swing.JComboBox<>();
@@ -39,6 +39,7 @@ public class Tela4CadastroPerfil extends javax.swing.JFrame {
         campoSobreMim = new javax.swing.JTextArea();
         cbStatusMerc = new javax.swing.JComboBox<>();
         cbInteresse2 = new javax.swing.JComboBox<>();
+        btnVoltar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -59,17 +60,19 @@ public class Tela4CadastroPerfil extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnFoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, 110, -1));
+
+        campoNomePerfil.setEnabled(false);
         getContentPane().add(campoNomePerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 110, 160, -1));
         getContentPane().add(dataNasc, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 170, 140, -1));
 
-        jLabel2.setText("Data de Nascimento");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 150, -1, -1));
+        txtDataNasc.setText("Data de Nascimento");
+        getContentPane().add(txtDataNasc, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 150, -1, -1));
 
-        jLabel3.setText("Sobre mim");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, -1, -1));
+        txtSobreMim.setText("Sobre mim");
+        getContentPane().add(txtSobreMim, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, -1, -1));
 
-        jLabel4.setText("Interesses");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, -1, -1));
+        txtInteresses.setText("Interesses");
+        getContentPane().add(txtInteresses, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, -1, -1));
 
         btnSalvarPerfil.setBackground(new java.awt.Color(161, 66, 105));
         btnSalvarPerfil.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
@@ -80,7 +83,7 @@ public class Tela4CadastroPerfil extends javax.swing.JFrame {
                 btnSalvarPerfilActionPerformed(evt);
             }
         });
-        getContentPane().add(btnSalvarPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 440, -1, -1));
+        getContentPane().add(btnSalvarPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 440, -1, -1));
 
         jLabel5.setText("Status no Mercado");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 390, -1, -1));
@@ -99,6 +102,17 @@ public class Tela4CadastroPerfil extends javax.swing.JFrame {
 
         cbInteresse2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione", "Administração", "Arquitetura", "Biomedicina", "Design", "Design de Interiores", "Design de Produto", "Dentista", "Direito", "Economia", "Enfermagem", "Engenharia Civil", "Engenharia Elétrica", "Engenharia Mecânica", "Engenharia de Minas", "Engenharia de Produção", "Estética", "Farmácia", "Fisioterapia", "Fonoaudiologia", "Gastronomia", "Logística", "Medicina", "Nutrição", "Odontologia", "Paisagismo", "Pedagogia", "Psicologia", "Radiologia", "Recursos Humanos", "Rede de Computadores", "Relações Internacionais", "Serviços Gerais", "Sistemas da Informação", "Sistemas para Internet", "Tecnologia da Informação", "Terapias Integrativas e Complementares" }));
         getContentPane().add(cbInteresse2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 350, 140, -1));
+
+        btnVoltar.setBackground(new java.awt.Color(161, 66, 105));
+        btnVoltar.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
+        btnVoltar.setForeground(new java.awt.Color(255, 255, 255));
+        btnVoltar.setText("Voltar");
+        btnVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVoltarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnVoltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 440, -1, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/TELACADASTROPERFIL.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 480));
@@ -120,8 +134,17 @@ public class Tela4CadastroPerfil extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalvarPerfilActionPerformed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        if(usuario.getUsuarioPerfilExist() == 0){
+            btnVoltar.setVisible(false);
+        } else {
+            dataNasc.setEnabled(false);
+        }
         carregarPerfilUser(usuario);
     }//GEN-LAST:event_formWindowActivated
+
+    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
+        dispose();
+    }//GEN-LAST:event_btnVoltarActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -165,6 +188,7 @@ public class Tela4CadastroPerfil extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnFoto;
     private javax.swing.JButton btnSalvarPerfil;
+    private javax.swing.JButton btnVoltar;
     private javax.swing.JTextField campoNomePerfil;
     private javax.swing.JTextArea campoSobreMim;
     private javax.swing.JComboBox<String> cbInteresse1;
@@ -173,11 +197,11 @@ public class Tela4CadastroPerfil extends javax.swing.JFrame {
     private com.toedter.calendar.JDateChooser dataNasc;
     private com.toedter.calendar.JDayChooser jDayChooser1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel txtDataNasc;
+    private javax.swing.JLabel txtInteresses;
+    private javax.swing.JLabel txtSobreMim;
     // End of variables declaration//GEN-END:variables
 
     public void recebeUsuarioOn(ObjUsuario usuAtual) {
