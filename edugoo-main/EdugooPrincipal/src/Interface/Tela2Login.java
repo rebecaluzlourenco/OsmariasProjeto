@@ -174,52 +174,6 @@ public class Tela2Login extends javax.swing.JFrame {
     private javax.swing.JLabel fundo;
     // End of variables declaration//GEN-END:variables
 
-    /*private ObjUsuario BuscarUsuario(String username, String senha) {
-
-        ObjUsuario buscaUser = new ObjUsuario();
-        this.conectar.conectaBanco();
-
-        try {
-            this.conectar.executarSQL(
-                    "SELECT "
-                    + "usuario_id,"
-                    + "usuario_nome,"
-                    + "usuario_username,"
-                    + "usuario_email,"
-                    + "usuario_senha,"
-                    + "usuario_perfilexist"
-                    + " FROM"
-                    + " usuarios"
-                    + " WHERE"
-                    + " usuario_username = '" + username + "' and usuario_senha = '" +senha+ "'"
-                    + ";"
-            );
-
-            while (this.conectar.getResultSet().next()) {
-
-                buscaUser.setUsuarioId(Integer.parseInt(this.conectar.getResultSet().getString(1)));
-                buscaUser.setUsuarioNome(this.conectar.getResultSet().getString(2));
-                buscaUser.setUsuarioUserName(this.conectar.getResultSet().getString(3));
-                buscaUser.setUsuarioEmail(this.conectar.getResultSet().getString(4));
-                buscaUser.setUsuarioSenha(this.conectar.getResultSet().getString(5));
-                buscaUser.setUsuarioPerfilExist(Integer.parseInt(this.conectar.getResultSet().getString(6)));
-                
-            }
-            
-            if (buscaUser.getUsuarioUserName().equals("")) {
-                buscaUser = null;
-            }
-
-        } catch (Exception e) {
-            System.out.println("Erro ao consultar usuario " + e.getMessage());
-            JOptionPane.showMessageDialog(null, "Erro ao buscar Usuario");
-            
-            buscaUser = null;
-        } finally {
-            this.conectar.fechaBanco();
-        }
-        return buscaUser;
-    }*/
     
     private void Logar(ObjUsuario objUsuario){
         

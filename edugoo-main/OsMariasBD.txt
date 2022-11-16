@@ -17,9 +17,20 @@ create table perfilUsuario (
 	perfil_nome				varchar(30) not null,
     perfil_data				date		not null,
     perfil_sobremim			varchar(300),
-    perfil_interesses	 	varchar(30),
+    perfil_interesse1	 	varchar(30),
+    perfil_interesse2	 	varchar(30),
     perfil_statusmercado	varchar(30),
     perfil_usuario_id 		int not null references usuario(usuario_id)
 );
 
-insert into usuarios values (null, 'Tester','tester', 'tester@hotmail.com','tester132',false);
+drop table if exists vagas;
+create table vagas (
+	vagas_id				int			auto_increment	primary key,
+	vagas_titulo			varchar(30) not null,
+    vagas_areaatuacao		varchar(30)	not null,
+    vagas_informacoes		varchar(300),
+    vagas_usuario_id 		int not null references usuario(usuario_id)
+);
+
+insert into usuarios values (null, 'Tester','tester', 'tester@hotmail.com','tester123',true);
+insert into perfilUsuario values (null, 'Tester', '2008-11-19', 'Sou o Tester', 'Sistemas da Informação', 'Tecnologia da Informação', 'Estagiando', 1)

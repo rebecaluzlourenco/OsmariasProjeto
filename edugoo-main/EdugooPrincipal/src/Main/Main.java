@@ -1,11 +1,11 @@
 package Main;
 
-import Interface.Tela2Login;
+import Interface.Tela1Entrada;
 
 public class Main {
 
     public static void main(String[] args) {
-        Tela2Login telalogin = new Tela2Login();
+        Tela1Entrada telalogin = new Tela1Entrada();
         telalogin.setVisible(true);
     }
 }

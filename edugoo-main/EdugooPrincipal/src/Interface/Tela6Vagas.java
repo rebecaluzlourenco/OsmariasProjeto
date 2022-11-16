@@ -1,9 +1,12 @@
 
 package Interface;
 
+import Objetos.ObjUsuario;
+
 
 public class Tela6Vagas extends javax.swing.JFrame {
 
+    ObjUsuario usuario = new ObjUsuario();
     
     public Tela6Vagas() {
         initComponents();
@@ -14,14 +17,14 @@ public class Tela6Vagas extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
+        btnFeed = new javax.swing.JButton();
         btnBuscar = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        txtSelectAreaAtua = new javax.swing.JLabel();
+        txtEntreContato = new javax.swing.JLabel();
+        txtEntreContatop2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtVagasDisp = new javax.swing.JTextArea();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cbAreaAtua = new javax.swing.JComboBox<>();
         btnInsVaga = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
@@ -29,13 +32,13 @@ public class Tela6Vagas extends javax.swing.JFrame {
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/LOGUINHO.png"))); // NOI18N
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnFeed.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/LOGUINHO.png"))); // NOI18N
+        btnFeed.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnFeedActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 20, 50, 40));
+        getContentPane().add(btnFeed, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 20, 50, 40));
 
         btnBuscar.setBackground(new java.awt.Color(161, 211, 199));
         btnBuscar.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
@@ -47,19 +50,19 @@ public class Tela6Vagas extends javax.swing.JFrame {
         });
         getContentPane().add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 430, 130, 40));
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
-        jLabel2.setText("Selecione a área de atuação");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, -1, -1));
+        txtSelectAreaAtua.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
+        txtSelectAreaAtua.setText("Selecione a área de atuação");
+        getContentPane().add(txtSelectAreaAtua, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, -1, -1));
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Entre em contato para garantir ");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, 240, 30));
+        txtEntreContato.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
+        txtEntreContato.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        txtEntreContato.setText("Entre em contato para garantir ");
+        getContentPane().add(txtEntreContato, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, 240, 30));
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("sua participação no processo seletivo");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 280, -1));
+        txtEntreContatop2.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
+        txtEntreContatop2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        txtEntreContatop2.setText("sua participação no processo seletivo");
+        getContentPane().add(txtEntreContatop2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 280, -1));
 
         txtVagasDisp.setColumns(20);
         txtVagasDisp.setRows(5);
@@ -67,8 +70,8 @@ public class Tela6Vagas extends javax.swing.JFrame {
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, 280, 200));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administração, negócios e serviços", "Artes e Design", "Ciências Biológicas e da Terra", "Análise e Desenvolvimento de Sistemas", "Ciências Sociais e Humanas", "Comunicação e Informação", "Engenharia e Produção", "Saúde e Bem-estar" }));
-        getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 280, -1));
+        cbAreaAtua.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administração, negócios e serviços", "Artes e Design", "Ciências Biológicas e da Terra", "Análise e Desenvolvimento de Sistemas", "Ciências Sociais e Humanas", "Comunicação e Informação", "Engenharia e Produção", "Saúde e Bem-estar" }));
+        getContentPane().add(cbAreaAtua, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 280, -1));
 
         btnInsVaga.setBackground(new java.awt.Color(22, 53, 88));
         btnInsVaga.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
@@ -88,13 +91,14 @@ public class Tela6Vagas extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void btnFeedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFeedActionPerformed
+        dispose();
+    }//GEN-LAST:event_btnFeedActionPerformed
 
     private void btnInsVagaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsVagaActionPerformed
         Tela7InserirVaga tela = new Tela7InserirVaga();
         tela.setVisible(true);
+        tela.recebeUsuarioOn(usuario);
         dispose();
     }//GEN-LAST:event_btnInsVagaActionPerformed
 
@@ -140,14 +144,18 @@ public class Tela6Vagas extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnFeed;
     private javax.swing.JButton btnInsVaga;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> cbAreaAtua;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel txtEntreContato;
+    private javax.swing.JLabel txtEntreContatop2;
+    private javax.swing.JLabel txtSelectAreaAtua;
     private javax.swing.JTextArea txtVagasDisp;
     // End of variables declaration//GEN-END:variables
+
+    public void recebeUsuarioOn(ObjUsuario usuAtual) {
+        this.usuario = usuAtual;
+    }
 }
