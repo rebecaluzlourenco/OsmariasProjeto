@@ -1,18 +1,22 @@
-
 package Interface;
 
+import Conexoes.MySQL;
 import Objetos.ObjUsuario;
-
+import Objetos.ObjVaga;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 public class Tela6Vagas extends javax.swing.JFrame {
 
+    MySQL conectar = new MySQL();
     ObjUsuario usuario = new ObjUsuario();
-    
+
     public Tela6Vagas() {
         initComponents();
     }
 
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -22,10 +26,10 @@ public class Tela6Vagas extends javax.swing.JFrame {
         txtSelectAreaAtua = new javax.swing.JLabel();
         txtEntreContato = new javax.swing.JLabel();
         txtEntreContatop2 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        txtVagasDisp = new javax.swing.JTextArea();
         cbAreaAtua = new javax.swing.JComboBox<>();
         btnInsVaga = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tbVagas = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -38,7 +42,7 @@ public class Tela6Vagas extends javax.swing.JFrame {
                 btnFeedActionPerformed(evt);
             }
         });
-        getContentPane().add(btnFeed, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 20, 50, 40));
+        getContentPane().add(btnFeed, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 50, 40));
 
         btnBuscar.setBackground(new java.awt.Color(161, 211, 199));
         btnBuscar.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
@@ -64,12 +68,6 @@ public class Tela6Vagas extends javax.swing.JFrame {
         txtEntreContatop2.setText("sua participação no processo seletivo");
         getContentPane().add(txtEntreContatop2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 280, -1));
 
-        txtVagasDisp.setColumns(20);
-        txtVagasDisp.setRows(5);
-        jScrollPane1.setViewportView(txtVagasDisp);
-
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, 280, 200));
-
         cbAreaAtua.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administração, negócios e serviços", "Artes e Design", "Ciências Biológicas e da Terra", "Análise e Desenvolvimento de Sistemas", "Ciências Sociais e Humanas", "Comunicação e Informação", "Engenharia e Produção", "Saúde e Bem-estar" }));
         getContentPane().add(cbAreaAtua, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 280, -1));
 
@@ -83,6 +81,38 @@ public class Tela6Vagas extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnInsVaga, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 430, 130, 40));
+
+        tbVagas.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Cod.", "Titulo"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        tbVagas.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        tbVagas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbVagasMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(tbVagas);
+        if (tbVagas.getColumnModel().getColumnCount() > 0) {
+            tbVagas.getColumnModel().getColumn(0).setResizable(false);
+            tbVagas.getColumnModel().getColumn(0).setPreferredWidth(10);
+            tbVagas.getColumnModel().getColumn(1).setResizable(false);
+            tbVagas.getColumnModel().getColumn(1).setPreferredWidth(200);
+        }
+
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, 280, 180));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/TELANOVO.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -103,8 +133,14 @@ public class Tela6Vagas extends javax.swing.JFrame {
     }//GEN-LAST:event_btnInsVagaActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        // TODO add your handling code here:
+        buscarTabela();
     }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void tbVagasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbVagasMouseClicked
+        Tela8VisualizarVaga telaVizu = new Tela8VisualizarVaga();
+        telaVizu.setVisible(true);
+        telaVizu.recebeVaga(getVagaSelecionada());
+    }//GEN-LAST:event_tbVagasMouseClicked
 
     /**
      * @param args the command line arguments
@@ -148,14 +184,77 @@ public class Tela6Vagas extends javax.swing.JFrame {
     private javax.swing.JButton btnInsVaga;
     private javax.swing.JComboBox<String> cbAreaAtua;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable tbVagas;
     private javax.swing.JLabel txtEntreContato;
     private javax.swing.JLabel txtEntreContatop2;
     private javax.swing.JLabel txtSelectAreaAtua;
-    private javax.swing.JTextArea txtVagasDisp;
     // End of variables declaration//GEN-END:variables
 
     public void recebeUsuarioOn(ObjUsuario usuAtual) {
         this.usuario = usuAtual;
+    }
+
+    private List<ObjVaga> getDados() {
+
+        List<ObjVaga> lstVagas = new ArrayList<ObjVaga>();
+
+        try {
+            this.conectar.conectaBanco();
+
+            this.conectar.executarSQL(
+                    "SELECT *"
+                    + " FROM"
+                    + " vagas"
+                    + " WHERE "
+                    + "vagas_areaatuacao = '" + cbAreaAtua.getSelectedItem().toString() + "'"
+                    + ";"
+            );
+
+            while (this.conectar.getResultSet().next()) {
+
+                ObjVaga vagaAtual = new ObjVaga();
+
+                vagaAtual.setVagaId(this.conectar.getResultSet().getInt(1));
+                vagaAtual.setVagaTitulo(this.conectar.getResultSet().getString(2));
+                vagaAtual.setVagaAreaAtuacao(this.conectar.getResultSet().getString(3));
+                vagaAtual.setVagaInfo(this.conectar.getResultSet().getString(4));
+                vagaAtual.setVagaUsuarioId(this.conectar.getResultSet().getInt(5));
+
+                lstVagas.add(vagaAtual);
+            }
+
+        } catch (Exception e) {
+            System.out.println("Erro ao consultar" + e.getMessage());
+
+        } finally {
+            this.conectar.fechaBanco();
+        }
+        return lstVagas;
+    }
+    
+    private void buscarTabela(){
+        DefaultTableModel modelo = (DefaultTableModel) tbVagas.getModel();
+        modelo.setNumRows(0);
+        
+        for (ObjVaga vagaAtual : getDados()) {
+            
+            modelo.addRow(new Object[]{
+                vagaAtual.getVagaId(),
+                vagaAtual.getVagaTitulo()
+            });
+            
+        }
+    }
+    
+    private ObjVaga getVagaSelecionada(){
+    
+        ObjVaga vagaSelecionada = new ObjVaga();
+        
+        int idx = tbVagas.getSelectedRow();
+        
+        vagaSelecionada = getDados().get(idx);
+        
+        return vagaSelecionada;
     }
 }
