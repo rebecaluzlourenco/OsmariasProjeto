@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package Interface;
 
 import Objetos.ObjUsuario;
@@ -21,6 +18,7 @@ public class Tela5Feed extends javax.swing.JFrame {
         jFrame1 = new javax.swing.JFrame();
         btnMeuPerfil = new javax.swing.JButton();
         btnBuscarVagas = new javax.swing.JButton();
+        btnContato = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
@@ -44,7 +42,7 @@ public class Tela5Feed extends javax.swing.JFrame {
                 btnMeuPerfilActionPerformed(evt);
             }
         });
-        getContentPane().add(btnMeuPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, -1, -1));
+        getContentPane().add(btnMeuPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, -1, -1));
 
         btnBuscarVagas.setText("Buscar Vagas");
         btnBuscarVagas.addActionListener(new java.awt.event.ActionListener() {
@@ -53,6 +51,14 @@ public class Tela5Feed extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnBuscarVagas, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 100, -1, -1));
+
+        btnContato.setText("Contato");
+        btnContato.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnContatoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnContato, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 100, -1, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/TELAPRINCIPAL.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 320, 480));
@@ -72,6 +78,12 @@ public class Tela5Feed extends javax.swing.JFrame {
         telaVagas.setVisible(true);
         telaVagas.recebeUsuarioOn(usuario);
     }//GEN-LAST:event_btnBuscarVagasActionPerformed
+
+    private void btnContatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContatoActionPerformed
+        Tela9Contato telaContato = new Tela9Contato();
+        telaContato.setVisible(true);
+        telaContato.recebeUsuarioOn(usuario);
+    }//GEN-LAST:event_btnContatoActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -110,6 +122,7 @@ public class Tela5Feed extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscarVagas;
+    private javax.swing.JButton btnContato;
     private javax.swing.JButton btnMeuPerfil;
     private javax.swing.JFrame jFrame1;
     private javax.swing.JLabel jLabel1;
